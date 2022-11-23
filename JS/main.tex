@@ -1,15 +1,37 @@
 \documentclass{book}
 \usepackage{ctex}
 \usepackage{minted}
+\usepackage{multirow}
+\usepackage{listings}
+\usepackage{caption}
+
+
+
 \newminted[js]{javascript}{bgcolor=lightgray!37, linenos, breakanywhere=true}
 \setminted[javascript]{bgcolor=lightgray!37, linenos, breakanywhere=true}
 
 \begin{document}
 
-\begin{js}
-$(selector).stop(true, false);
-\end{js}
-
+\part{JavaScript教程}
+\chapter{ECMAscript}
+\section{变量}
+\begin{table}
+\caption{声明变量的特殊情况}
+\centering
+\begin{tabular}{lll}
+\hline
+情况&说明&结果\\
+\hline
+\verb|var age; console.log(age);|&只声明 不赋值&undefined\\
+\verb|console.log(age);|&不声明 不赋值&报错\\
+\verb|age = 10; console.log(age);|&不声明 只赋值&10\\
+\hline
+\end{tabular}
+\end{table}
+\chapter{DOM}
+\chapter{BOM}
+\part{其他}
+\include{dispersedKnowledge}
 
 \end{document}
 
