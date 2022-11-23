@@ -1,0 +1,15 @@
+\chapter{ECMAscript}
+\section{变量}
+\begin{table}
+\caption{声明变量的特殊情况}
+\centering
+\begin{tabular}{lll}
+\hline
+情况&说明&结果\\
+\hline
+\verb|var age; console.log(age);|&只声明 不赋值&undefined\\
+\verb|console.log(age);|&不声明 不赋值&报错\\
+\verb|age = 10; console.log(age);|&不声明 只赋值&10\\
+\hline
+\end{tabular}
+\end{table}
