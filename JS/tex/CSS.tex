@@ -1,0 +1,44 @@
+\chapter{CSS}
+\section{元素显示模式}
+元素显示模式就是元素（标签）以什么方式进行显示，比如说div自己占一行，而span却可以一行内写多个。
+
+HTML元素一般分为块元素和行内元素两种类型。
+
+\subsection{块元素}
+常见的块元素有h1-h6，p，div，ul，ol，li，其中标签是最典型的块元素。（似乎暗示自带换行的功能？ ）
+
+块级元素的特点：
+\begin{itemize}
+\item 自己独占一行；
+\item 高度、宽度、外边距预计内边距都可以控制；
+
+\item 宽度默认是容器（父级宽度）的100\%；
+
+\item 是一个容器及盒子，里面可以放行内或者块级元素；
+\end{itemize}
+
+注意：
+\begin{itemize}
+\item 文字类的元素不能使用块级元素；
+\item p标签主要用于存放文字，因此里面不能放块级元素；
+\item h1-h6都是文字类块级标签，里面也不能放其他块级元素；
+\end{itemize}
+\subsection{行内元素（内联元素）}
+常见的行内元素有a、strong、b、em、i、del、s、ins、u、span等，其中span标签是最典型的行内元素。
+
+行内元素的特点：
+\begin{itemize}
+\item 相邻行内元素在一行上可以显示多个；
+\item 高、宽直接设置是无效的；
+\item 默认宽度就是元素本身内容的宽度；
+\item 行内元素只能容纳文本或其他行内元素；
+
+\end{itemize}
+注意：
+\begin{itemize}
+\item 链接里面不能再放链接；
+\item 特殊情况链接a里面可以放跨级元素，但是给a转换一下块级模式最安全；
+
+
+\end{itemize}•
+
