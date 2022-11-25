@@ -1,0 +1,71 @@
+\documentclass{article}
+\usepackage{ctex}
+\usepackage{mathptmx}
+\usepackage{listings}
+\lstset{
+	numbers=left,
+	stepnumber=1,
+	breaklines=true,
+	basicstyle=\footnotesize,
+}
+%\lstdefinestyle{DOS}
+%{
+%    backgroundcolor=\color{black},
+%    basicstyle=\scriptsize\color{white}\ttfamily
+%}
+\usepackage{minted}
+\newminted[js]{javascript}{bgcolor=lightgray!37, linenos, breakanywhere=true}
+\setminted[javascript]{bgcolor=lightgray!37, linenos, breakanywhere=true}
+\usepackage{geometry}
+\geometry{
+	left=2.45cm, right=2.45cm, bottom=2.77cm, top=2.77cm
+}
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=orange!95!black,
+	filecolor=orange,
+	urlcolor=orange!80!white,
+	citecolor=orange
+}
+\title{Vue2实战项目}
+\author{Stephen CUI}
+\begin{document}
+
+\maketitle
+\section{项目搭建和自动访问}
+局部安装vue-cli 4.5.15和项目创建
+%[style=DOS]
+\begin{lstlisting}
+$ npm init -y
+$ cnpm i -D @vue/cli
+$ npx vue -V
+$ npx vue create project-one
+$ npm run serve
+\end{lstlisting}
+
+\begin{enumerate}
+\item 初始化项目文件
+\item 安装脚手架
+\item 查看vue-cli版本号
+\item 创建项目
+\item 运行项目
+\end{enumerate}
+
+\section{CSS拓展语言}
+\subsection{\href{https://www.sass.hk/}{Sass}(Syntactically Awesome Stylesheets)}
+据Sass官网介绍，Sass是世界上最成熟、最稳定、最强大的专业级CSS拓展语言。Sass是一个将脚本解析成CSS格式的脚本语言，即SassScript，也是一款CSS预处理器。CSS 预处理器是一个能让你通过预处理器自己独有的语法来生成CSS的程序。市面上有很多 CSS 预处理器可供选择，且绝大多数 CSS 预处理器会增加一些原生 CSS 不具备的特性，例如代码混合，嵌套选择器，继承选择器等。这些特性让 CSS 的结构更加具有可读性且易于维护\footnote{\url{https://developer.mozilla.org/zh-CN/docs/Glossary/CSS_preprocessor}}。
+\section{CSS预处理器与样式重置}
+
+\section{图标库\href{https://fontawesome.com.cn/}{Font Awesome}安装使用}
+\begin{lstlisting}
+$ cnpm i -D font-awesome
+\end{lstlisting}
+\section{路由安装\href{https://axios-http.com/zh/}{axios}}
+
+
+
+
+
+\end{document}
