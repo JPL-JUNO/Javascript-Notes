@@ -1,4 +1,5 @@
 \chapter{CSS}
+\section{CSS颜色\label{CCS color}}
 \section{元素显示模式}
 元素显示模式就是元素（标签）以什么方式进行显示，比如说div自己占一行，而span却可以一行内写多个。
 
@@ -156,3 +157,152 @@ margin属性用于设置外边距，即控制盒子与盒子之间的距离。
 \end{css}
 
 \textbf{注意：}行内元素尽量只设置左右的内外边距，不要设置上下内外边距。但是转换为块级或者块元素就可以了。
+\subsection{圆角边框}
+border-radius属性可以设置元素的外边框圆角。
+
+语法格式为：
+\begin{css}
+border-radius: length|pct;
+\end{css}
+\begin{itemize}
+    \item 参数值可以为数值或者百分比的形式；
+    \item 如果是正方形，想要一个圆，课数值修改为高度或宽度的一般即可，或者直接写50\%；
+    \item 如果是一个矩形，设置为高度的一般即可；
+    \item 该属性是一个简写属性，可以写四个值，分别表示左上角、右上角、右下角、左下角；
+    \item 分开写：border-top-left-radius、border-top-right-radius、border-bottom-right-radius、border-bottom-left-radius；
+\end{itemize}
+\subsection{盒子阴影（重点）}
+box-shadow属性可以为盒子添加阴影。
+
+语法格式为：
+\begin{css}
+box-shadow: h-shadow v-shadow blur spread color inset;
+\end{css}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ll}
+        \hline
+        属性&描述\\
+        \hline
+        h-shadow&必需，水平阴影的位置，允许负值\\
+        v-shadow&必需，垂直阴影的位置，允许负值\\
+        blur&可选，模糊的清晰度\\
+        spread&可选，阴影的尺寸\\
+        color&可选，阴影的颜色，参见\nameref{CCS color}\\
+        inset&可选，将外部阴影（默认）改为内部阴影\\
+        \hline
+    \end{tabular}
+\end{table}
+\begin{itemize}
+    \item 默认为外部阴影（outset），这个值不写，如果写了将导致阴影无效；
+    \item 盒子阴影不占用控件，不会印象其他盒子排列；
+\end{itemize}
+\section{文字阴影（应用不多）}
+text-shadow属性将阴影应用于文本。
+语法格式为：
+\begin{css}
+box-shadow: h-shadow v-shadow blur color;
+\end{css}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ll}
+        \hline
+        属性&描述\\
+        \hline
+        h-shadow&必需，水平阴影的位置，允许负值\\
+        v-shadow&必需，垂直阴影的位置，允许负值\\
+        blur&可选，模糊的清晰度\\
+        color&可选，阴影的颜色，参见\nameref{CCS color}\\
+        \hline
+    \end{tabular}
+\end{table}
+\section{CSS浮动}
+\subsection{标准流（普通流/文档流）}
+标准流就是标签按照规定好默认的方式排序。
+\subsection{浮动}
+网页布局第一准则：\zd{多个块级元素纵向排列找标准流，多个块级元素横向排列找浮动。}
+
+float属性用于创建浮动框，将其移动到一边，直到左边缘或右边缘触及包含块或者另一个浮动框的边缘。
+
+语法格式为：
+\begin{css}
+selector {
+    float: value;
+}
+\end{css}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ll}
+        \hline
+        属性值&描述\\
+        \hline
+        none&元素不浮动（默认值）\\
+        left&元素向左浮动\\
+        right&元素向右浮动\\
+        \hline
+    \end{tabular}
+\end{table}
+\subsection{浮动特性}
+\begin{enumerate}
+    \item 浮动元素会脱离标准流（拖标），浮动的盒子不再保留原先的位置；
+    \item 浮动元素会一行内显示并且元素顶部对齐；
+    \item 浮动元素会具有行内块元素的特性
+    \begin{itemize}
+        \item 如果行内元素有了浮动，则不需要转换为行内块元素就可以直接指定高度和宽度；
+        \item 如果块级盒子没有设置宽度，默认宽度和父级宽度一样宽，但是添加浮动后，它的大小根据内容来决定；
+        \item 浮动的盒子中间是没有缝隙的，是紧挨在一起的；
+        \item 行内元素同理；
+    \end{itemize}
+\end{enumerate}
+
+为了约束浮动元素的位置，网页布局一般采取的策略是：\zd{先用标准流的父元素排列上下位置，之后内部子元素采取浮动排列左右位置，符合网页布局第一准则。}
+\section{常见网页布局}
+\section{清除浮动}
+清除浮动的本质就是清除浮动元素造成的影响。如果父盒子本身有高度，则不需要清除浮动。清除浮动之后，父级就会根据浮动的子盒子自动检测高度，父级指定高度之后，就不会影响下面的标准流了。
+
+语法格式为：
+\begin{css}
+selector{
+    clear: value;
+}
+\end{css}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ll}
+        \hline
+        属性值&描述\\
+        \hline
+        left&元素向左浮动\\
+        right&元素向右浮动\\
+        both&同时清除左右两侧浮动的影响\\
+        \hline
+    \end{tabular}
+\end{table}
+清除浮动的策略是：闭合浮动。
+\subsection{清除浮动的方法}
+\begin{enumerate}
+    \item 额外标签法也称为隔墙法，是W3C推荐的做法；
+    \item 父级添加overflow属性；
+    \item 父级添加after伪元素；
+    \item 父级添加双伪元素；
+\end{enumerate}
+\paragraph{父级添加overflow属性} 可以给父级添加overflow属性，将其属性值设置为hidden、auto和scroll。代码简洁，但是无法显示溢出内容。
+
+\paragraph{:after伪元素法} 
+
+\paragraph{添加双伪元素}
+\section{CSS属性书写顺序（重点）}
+\begin{enumerate}
+    \item 布局定位属性：display/position/float/clear/visibility/overflow；
+    \item 自身属性：width/height/margin/padding/border/background；
+    \item 文本属性：color/font/text-decoration/text-align/vertical-align/white-space/break-word；
+    \item 其他属性(CSS3)：content/cursor/border-radius/box-shaow/text-shadow/background: linear-gradient；
+\end{enumerate}
+\section{页面布局整体思路}
+为了提高网页制作的效率， 布局时通常有以下的整体思路：
+\begin{enumerate}
+    \item 必须确定页面的版心（可视区）；
+    \item 分析页面中的行模块以及每个行模块中的列模块；
+    \item 一行中的列模块经常浮动布局，先确定每个列的大小，之后确定列的位置；
+    \item 制作HTML结构，遵循先有结构，后有样式的原则，结构最重要；
+\end{enumerate}
