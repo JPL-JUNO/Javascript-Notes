@@ -1,0 +1,22 @@
+\chapter{项目笔记}
+\begin{js}
+    lintOnSave: false,
+\end{js}
+\section{Element-UI}
+\subsection{Form表单}
+\paragraph{表单验证}
+在防止用户犯错的前提下，尽可能让用户更早地发现并纠正错误。
+\paragraph{Form Methods}
+\begin{table}[H]
+    \centering
+    \caption{表单方法}
+    \label{formmethods}
+    \begin{tabularx}{\textwidth}{lXl}
+        \hline
+        方法名      & 说明                                                                                     & 参数       \\
+        \hline
+        validate & 对整个表单进行校验的方法，参数为一个回调函数。该回调函数会在校验结束后被调用，并传入两个参数：是否校验成功和未通过校验的字段。若不传入回调函数，则会返回一个 promise & validate \\
+        \hline
+    \end{tabularx}
+
+\end{table}
