@@ -372,17 +372,60 @@ float属性用于创建浮动框，将其移动到一边，直到左边缘或右
 \end{css}
 特点：
 \begin{itemize}
-    \item
+    \item 如果没有祖先元素或者祖先元素没有定位，则以浏览器为准定位（Document文档）；
+    \item 如果祖先元素有定位，则以最近一级的有定位祖先元素为参考点移动位置；
+    \item 绝对定位不占有原先的位置（脱标）；
 \end{itemize}
 
+\subsubsection{子绝父相口诀}
 
+子绝父相的意思是子级是绝对定位的话，父级要用相对定位。
 
-\subsection{边偏移}
+子级绝对定位，不会占用位置，可以放到父盒子里面的任何一个地方，不会影响其他的兄弟盒子。父盒子需要加定位限制子盒子在父盒子内显示。父盒子布局时，需要占用位置，因此父盒子只能是相对定位。
+
+\subsubsection{固定定位fixed}
+固定定位是元素固定于浏览器可视区的位置，主要使用场景是可以在浏览器页面滚动时元素的位置不会改变。
+语法格式为：
+\begin{css}
+    selector {
+    position: fixed;
+    }
+\end{css}
+
+固定定位特点：
+\begin{itemize}
+    \item 以浏览器的可视窗口为参照点移动元素；
+    \item 与父元素没有任何关系；
+    \item 不随滚动条滚动；
+    \item 固定定位不再占有原先的位置；
+\end{itemize}
+
+固定定位是脱标的，其实固定定位也可以看作是一种特殊的绝对定位。
+
+如果想要在版心右侧使用固定定位，首先让固定定位的盒子\verb|left: 50%|，移动到浏览器可视区域的一般位置，再让固定定位的盒子\verb|margin-left: 50% of core|。
+
+\subsection{粘性定位sticky}
+粘性定位可以被认为是相对定位和固定定位的混合。
+
+粘性定位语法格式为：
+\begin{css}
+    selector {
+    position: sticky;
+    }
+\end{css}
+粘性定位的特点：
+\begin{itemize}
+    \item 以浏览器的可视窗口为参考点移动元素（固定定位特点）；
+    \item 粘性定位占有原先的位置（相对定位特点）；
+    \item 必须添加\nameref{edgeOffset}中的一个；
+\end{itemize}
+
+\subsection{边偏移\label{edgeOffset}}
 边偏移决定定位的盒子移动的最终位置，主要由top、bottom、left、right4个属性：
 \begin{table}[H]
     \centering
     \caption{边偏移属性}
-    \label{edge offset}
+    \label{edgeOffsetTable}
     \begin{tabular}{lll}
         \hline
         属性值    & 示例           & 描述                     \\
@@ -394,3 +437,4 @@ float属性用于创建浮动框，将其移动到一边，直到左边缘或右
         \hline
     \end{tabular}
 \end{table}
+\subsection{定位的总结}
