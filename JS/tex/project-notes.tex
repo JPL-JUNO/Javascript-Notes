@@ -20,3 +20,34 @@
     \end{tabularx}
 
 \end{table}
+
+\section{登录和退出功能}
+\subsection{登录功能实现}
+\subsubsection{路由导航守卫控制访问权限}
+如果用户没有登录，但是直接通过URL方位特定页面，需要重新导航到登录页面。
+\begin{js}
+    // Mount route navigation guard
+    // to: the path to be accessed
+    // from: Represents which path it jumped from
+    // next(): let go, next('/path'): Force jump to path page
+    router.beforeEach((to, from, next) => {
+    if (to.path === '/login') return next()
+    // get token
+    const tokenStr = window.sessionStorage.getItem('token')
+    if (!tokenStr) return next('/login')
+    next()
+    })
+\end{js}
+\subsection{退出功能}
+\subsubsection{退出功能原理}
+基于token的方式实现退出比较简单，只需要销毁本地的token即可，这样后续的请求就不会携带token，必须重新登录生成一个token之后才可以访问页面。
+\begin{js}
+    // clear token
+    window.sessionStorage.clear()
+    // jump to new path
+    this.$router.push("/path")
+\end{js}
+\section{主页布局}
+\subsection{通过接口获取菜单数据}
+
+通过axios请求拦截器添加token，保证拥有获取数据的权限。
