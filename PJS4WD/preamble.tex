@@ -1,0 +1,28 @@
+\usepackage{ctex}
+\usepackage{mathptmx}
+\usepackage{multirow}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{tabularx}
+\usepackage{listing}
+\newcommand\zd[1]{\textcolor{red}{#1}}
+
+
+\usepackage{geometry}
+\geometry{
+    left=2.45cm, right=2.45cm, bottom=2.77cm, top=2.77cm
+}
+
+\usepackage{minted}
+\newminted[js]{javascript}{bgcolor=lightgray!37, linenos, breakanywhere=true}
+\newminted[css]{css}{bgcolor=red!10, linenos, breakanywhere=true}
+\newminted[html]{html}{bgcolor=orange!7, linenos, breakanywhere=true}
+\setminted[javascript]{bgcolor=lightgray!37, linenos, breakanywhere=true}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=orange!95!black,
+    filecolor=orange,
+    urlcolor=orange!80!white,
+    citecolor=orange
+}
