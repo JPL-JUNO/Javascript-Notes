@@ -404,7 +404,7 @@ float属性用于创建浮动框，将其移动到一边，直到左边缘或右
 
 如果想要在版心右侧使用固定定位，首先让固定定位的盒子\verb|left: 50%|，移动到浏览器可视区域的一般位置，再让固定定位的盒子\verb|margin-left: 50% of core|。
 
-\subsection{粘性定位sticky}
+\subsubsection{粘性定位sticky}
 粘性定位可以被认为是相对定位和固定定位的混合。
 
 粘性定位语法格式为：
@@ -478,5 +478,65 @@ float属性用于创建浮动框，将其移动到一边，直到左边缘或右
 
 浮动之所以不会压住文字，是因为浮动产生的最初目的是为了左文字环绕效果的，文字会围绕浮动元素。
 
+\section{元素的显示与隐藏}
+类似网站中的广告，当点击叉号关闭后，广告消失，但是重新刷新页面，则会重新出现广告，本质就是一个元素在页面中的隐藏于显示。
+\subsection{display显示隐藏}
+display属性用于设置一个元素应如何显示。display的取值很多，但是最常用的取值为none（隐藏对象）、block（除了转换为块级元素之外，同时还有显示元素的意思）。
 
+display隐藏元素之后，不再占有原来的位置。
+\subsection{visibility显示隐藏}
+visibility元素用于指定一个元素应可见还是隐藏，常见参数为visible（元素可见）、hidden（元素隐藏）。
 
+visibility隐藏元素后，继续占有原来的位置。如果隐藏元素想要继续占有原来的位置，使用\verb|visibility: hidden|，不想继续占有原来的位置，使用\verb|display: none|。
+\subsection{overflow溢出显示隐藏}
+overflow属性规定当内容溢出元素框时发生的事情。
+\begin{table}[H]
+    \caption{overflow属性值}
+    \centering\begin{tabular}{ll}
+
+        \hline
+        值       & 描述                                         \\
+        \hline
+        visible & 默认值。内容不会被修剪，会呈现在元素框之外。                     \\
+        hidden  & 内容会被修剪，并且其余内容是不可见的。                        \\
+        scroll  & 内容会被修剪，但是浏览器会显示滚动条以便查看其余的内容。 没有溢出时，滚动条也显示。 \\
+        auto    & 如果内容被修剪，则浏览器会显示滚动条以便查看其余的内容。没有溢出时，滚动条不显示。  \\
+        inherit & 规定应该从父元素继承 overflow 属性的值。                  \\
+        \hline
+    \end{tabular}
+\end{table}
+
+如果有定位的盒子，慎用\verb|overflow: hidden|，因为它会隐藏多余的部分。
+\chapter{CSS高级技巧}
+\section{精灵图}
+一个页面中往往会应用很多小的背景图像作为装饰，当页面中的图像过多时，服务器就会频繁地接收和发送请求图片，造成服务器压力过大，这将打打降低页面的加载速度。因此，为了有效地减少服务器接收和请求的次数，提高页面的加载速度，出现了CSS精灵技术（也称CSS Sprites、CSS雪碧）。
+
+使用精灵图的核心：
+\begin{itemize}
+    \item 精灵技术主要针对于背景图片使用，就是把多个小背景图片整合到一张大图片中；
+    \item 移动背景图片位置，使用\verb|background-position|；
+    \item 移动的距离就是这个目标图片的$x$（从left向right为正）和$y$（从top向bottom为正）坐标，注意也网页中的坐标有所不同；
+    \item 使用精灵图的时候需要精确测量每个小背景图片的大小和位置；
+\end{itemize}
+
+精灵图使用的图片是多张图片组合而成的图片，将图片位置不断移动，将所在位置的图片内容显示出来。
+
+精灵图缺点：
+\begin{itemize}
+    \item 图片文件仍然比较大；
+    \item 图片本身放大或缩小还是会存在失真；
+    \item 一旦图片制作完毕想要更换非常复杂；
+\end{itemize}
+\section{字体图标}
+字体图标主要用于显示网页中通用、常用的一些小图标。虽然精灵图也可以实现该技术，但是精灵图的缺陷使得其不方便完成，字体图标的出现很好的解决了上面的问题。字体图标可以为前端工程师提供一种方便高效的图标使用方式，展示的效果是图标，但是本质上属于字体。
+
+字体图标是一些网页常见的小图标，可以直接从网上下载，因此使用中需要先下载后引入HTML页面中，对于没有的图标可以进行追加。
+
+推荐下载的网站：
+\begin{itemize}
+    \item \href{http://icomoon.io}{icomoon};
+    \item \href{http://www.iconfont.cn/}{阿里iconfont字体}；
+\end{itemize}
+\section{CSS三角}
+\section{CSS用户界面样式}
+\section{}
