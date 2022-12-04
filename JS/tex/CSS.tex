@@ -538,5 +538,154 @@ overflow属性规定当内容溢出元素框时发生的事情。
     \item \href{http://www.iconfont.cn/}{阿里iconfont字体}；
 \end{itemize}
 \section{CSS三角}
+\begin{css}
+    .div {
+    width: 0;
+    height: 0;
+    /* Certain browser compatibility issues */
+    line-height: 0;
+    /* Certain browser compatibility issues */
+    font-size: 0;
+    border: 50px solid transparent;
+    border-right-color: red;
+    }
+\end{css}
 \section{CSS用户界面样式}
-\section{}
+所谓的界面样式，就是更改一些用户操作样式，以便更好提高用户的体验。
+
+\begin{itemize}
+    \item 更改用户的鼠标样式；
+    \item 表单轮廓；
+    \item 防止表单域拖拽；
+\end{itemize}
+\subsection{鼠标样式cursor}
+\begin{css}
+    li {
+    cursor: pointer;
+    }
+\end{css}
+\begin{table}[H]H
+    \caption{鼠标样式}
+    \centering\begin{tabular}{ll}
+        \hline
+        属性值                  & 描述 \\
+        \hline
+        cursor: default;     & 默认 \\
+        cursor: pointer;     & 手指 \\
+        cursor: move;        & 移动 \\
+        cursor: text;        & 文本 \\
+        cursor: not-allowed; & 禁止 \\
+        \hline
+    \end{tabular}
+
+\end{table}
+\subsection{表单轮廓与拖拽}
+\begin{css}
+    input,
+    textarea {
+            outline: none;
+        }
+    textarea {
+            resize: none;
+        }
+\end{css}
+\section{vertical-align}
+CSS中vertical-align属性经常用于设置图片或者表单（行内块元素）和文字的垂直对齐。 用于设置一个元素的垂直对齐方式，但是它只针对于行内元素或者行内块元素有效。
+
+语法格式为：
+\begin{css}
+    vertical-align: baseline|top|middle|bottom
+\end{css}
+
+\begin{table}[H]
+    \caption{vertical-align属性值}
+    \centering\begin{tabular}{ll}
+        \hline
+        属性值      & 描述                 \\
+        \hline
+        baseline & 默认，元素放置在父元素的基线上    \\
+        top      & 把元素的顶端与行中最高元素的顶端对齐 \\
+        middle   & 把此元素放置在父元素的中部      \\
+        bottom   & 把元素的顶端与行中最低的元素顶端对齐 \\
+        \hline
+    \end{tabular}
+
+\end{table}
+
+\subsection{图片底部默认的空白缝隙问题}
+图片底侧会有一个空白缝隙，这是因为行内块元素会和文字的基线（baseline）对齐。
+
+主要的解决方式：
+\begin{enumerate}
+    \item 给图片添加\verb|vertical-align: middle top bottom|等；（提倡使用）
+    \item 把图片转换为块级元素\verb|display: block|
+\end{enumerate}
+\subsection{溢出文字使用省略号显示}
+\subsubsection{单行文本溢出}
+单行文本溢出显示省略号，必须满足三个条件：
+\begin{enumerate}
+    \item 强制一行内显示文本：\verb|white-space: nowrap;|；
+    \item 超出部分隐藏：\verb|overflow: hidden|；
+    \item 文字用省略号替代超出的部分：\verb|text-overflow: ellipsis|；
+\end{enumerate}
+\subsubsection{多行文本溢出}
+\begin{css}
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+\end{css}
+更推荐让后台人员来做这个效果，因为后台人员可以设置显示多少个字，操作更简单。
+
+\section{常见布局技巧}
+\subsection{margin负值技巧}
+\begin{css}
+    ul li {
+            position: relative;
+            float: left;
+            list-style: none;
+            width: 150px;
+            height: 200px;
+            border: 1px solid red;
+            margin-left: -1px;
+            /* 先float: left;在进行margin-left */
+        }
+
+    ul li:hover {
+    z-index: 1;
+    border: 1px solid blue
+    }
+\end{css}
+\subsection{文字围绕浮动元素}
+巧妙运用浮动元素不会压住文字的特性。
+\begin{css}
+    <style>
+    * {
+            margin: 0;
+            padding: 0;
+        }
+
+    .box {
+            width: 300px;
+            height: 70px;
+            background-color: red;
+            margin: 0 auto;
+            padding: 5px;
+        }
+
+    .pic {
+            float: left;
+            width: 120px;
+            height: 70px;
+            margin-right: 10px;
+        }
+
+    .pic img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+\end{css}
+\subsection{行内块巧妙运用}
+button按钮似乎只能指定宽高，指定padding和border似乎是压缩了contents的大小。
