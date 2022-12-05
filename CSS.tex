@@ -1,0 +1,711 @@
+\chapter{CSS}
+\section{CSS颜色\label{CCS color}}
+\section{元素显示模式}
+元素显示模式就是元素（标签）以什么方式进行显示，比如说div自己占一行，而span却可以一行内写多个。
+
+HTML元素一般分为块元素和行内元素两种类型。
+
+\subsection{块元素}
+常见的块元素有h1-h6，p，div，ul，ol，li，其中标签是最典型的块元素。（似乎暗示自带换行的功能？ ）
+
+块级元素的特点：
+\begin{itemize}
+    \item 自己独占一行；
+    \item 高度、宽度、外边距预计内边距都可以控制；
+
+    \item 宽度默认是容器（父级宽度）的100\%；
+
+    \item 是一个容器及盒子，里面可以放行内或者块级元素；
+\end{itemize}
+
+注意：
+\begin{itemize}
+    \item 文字类的元素不能使用块级元素；
+    \item p标签主要用于存放文字，因此里面不能放块级元素；
+    \item h1-h6都是文字类块级标签，里面也不能放其他块级元素；
+\end{itemize}
+\subsection{行内元素（内联元素）}
+常见的行内元素有a、strong、b、em、i、del、s、ins、u、span等，其中span标签是最典型的行内元素。
+
+行内元素的特点：
+\begin{itemize}
+    \item 相邻行内元素在一行上可以显示多个；
+    \item 高、宽直接设置是无效的；
+    \item 默认宽度就是元素本身内容的宽度；
+    \item 行内元素只能容纳文本或其他行内元素；
+
+\end{itemize}
+注意：
+\begin{itemize}
+    \item 链接里面不能再放链接；
+    \item 特殊情况链接a里面可以放跨级元素，但是给a转换一下块级模式最安全；
+\end{itemize}
+
+\section{CSS背景}
+\subsection{背景图像固定（背景附着）}
+background-attachment属性设置背景图像是否是固定或者随着页面
+\subsection{背景复合写法}
+当使用简写属性时，没有特定的书写顺序，一般习惯按照约定顺序为：
+
+\verb|backgroud: color url repeat attachment position|
+
+\subsection{背景色半透明}
+CSS3为我们提供了背景颜色半透明的效果。
+\begin{css}
+    backgroud: rgba(0, 0, 0, .3);
+\end{css}
+
+
+\begin{itemize}
+    \item 最后一个参数时alpha透明度，取值范围在$0-1$之间；
+    \item 背景半透明是指盒子背景半透明，盒子里面的内容不受影响；
+\end{itemize}
+\subsection{背景总结}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{lll}
+        \hline
+        属性                    & 作用      & 值                                         \\
+        \hline
+        background-color      & 背景颜色    & 预定义的颜色值或十六进制或RGB值                         \\
+        background-image      & 背景图片    & url(path)                                 \\
+        background-repeat     & 是否平铺    & repeat/no-repeat/repeat-x/repeat-y        \\
+        background-position   & 背景位置    & length/position 分别是x和y的坐标                 \\
+        background-attachment & 背景附着    & scroll（背景滚动） fixed（背景固定）                  \\
+        背景简写                  & 书写更简单   & 背景颜色 背景图片 背景平铺 背景滚动 背景位置                  \\
+        背景色半透明                & 背景颜色半透明 & background: rgba(red, green, blue, alpha) \\
+        \hline
+    \end{tabular}
+\end{table}
+\section{CSS三大样式}
+CSS有三个非常重要的三个特性：层叠性、继承性、优先级。
+\subsection{层叠性}
+相同选择器设置相同的样式时，此时新的样式就会覆盖另一个冲突的样式，层叠性主要解决样式冲突的问题。
+
+层叠性原则：
+\begin{itemize}
+    \item 样式冲突，遵顼的原则是就近原则，哪个样式离结构近，就执行哪个样式；
+    \item 样式不冲突，不会层叠；
+\end{itemize}
+\subsection{继承性}
+\subsection{优先级}
+\autoref{selector weight}显示了选择器的权重
+\begin{table}
+    \caption{选择器权重}
+    \label{selector weight}
+    \centering
+    \begin{tabular}{ll}
+        \hline
+        选择器          & 选择器权重   \\
+        \hline
+        继承或者*        & 0,0,0,0 \\
+        元素选择器        & 0,0,0,1 \\
+        类选择器、伪类选择器   & 0,0,1,0 \\
+        ID选择器        & 0,1,0,0 \\
+        行内样式style="" & 1,0,0,0 \\
+        !important   & 无穷大     \\
+        \hline
+    \end{tabular}
+\end{table}
+\begin{enumerate}
+    \item 继承的权重是0，如果该元素没有直接选中，不管父元素权重多高，子元素得到的权重都是0。
+    \item a链接浏览器默认指定列一个样式：蓝色的~有下划线
+\end{enumerate}
+\subsubsection{权重叠加}
+\section{盒子模型}
+\subsection{盒子模型的组成}
+所谓盒子模型，就是把HTML页面中的布局元素看作是一个矩形的盒子，也就是一个盛装内容的容器。
+
+CSS盒子模型本质是一个盒子，封装周围的HTML元素，它包括：边框（border），外边距（margin），内边距（padding）和实际内容（content）。
+
+\subsubsection{边框（border）}
+\paragraph{表格的细线边框}
+border-collapse属性控制连六七绘制表格边框的方式，它控制相邻单元格的边框。
+
+语法格式为：
+\begin{css}
+    border-collapse: collapse;
+\end{css}
+\paragraph{边框会影响盒子的实际大小}
+\subsubsection{内边距（padding）}
+padding属性用于设置内边距，即边框与内容之间的距离。
+
+如果盒子本身没有指定width/height属性，则此时padding不会撑开盒子大小。
+\subsubsection{外边距（margin）}
+margin属性用于设置外边距，即控制盒子与盒子之间的距离。
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ll}
+        \hline
+        属性            & 作用   \\
+        \hline
+        margin-left   & 左外边距 \\
+        margin-right  & 右外边距 \\
+        margin-top    & 上外边距 \\
+        margin-bottom & 下外边距 \\
+        \hline
+    \end{tabular}
+\end{table}
+\subsubsection{清除外边距}
+网页元素很多都带有默认的内外边距，而且不同浏览器默认的值也不一样，因此我们在布局前，首先要清除网页元素的内外边距。
+
+\begin{css}
+    * {
+        padding: 0;
+        margin: 0;
+    }
+\end{css}
+
+\textbf{注意：}行内元素尽量只设置左右的内外边距，不要设置上下内外边距。但是转换为块级或者块元素就可以了。
+\subsection{圆角边框}
+border-radius属性可以设置元素的外边框圆角。
+
+语法格式为：
+\begin{css}
+    border-radius: length|pct;
+\end{css}
+\begin{itemize}
+    \item 参数值可以为数值或者百分比的形式；
+    \item 如果是正方形，想要一个圆，课数值修改为高度或宽度的一般即可，或者直接写50\%；
+    \item 如果是一个矩形，设置为高度的一般即可；
+    \item 该属性是一个简写属性，可以写四个值，分别表示左上角、右上角、右下角、左下角；
+    \item 分开写：border-top-left-radius、border-top-right-radius、border-bottom-right-radius、border-bottom-left-radius；
+\end{itemize}
+\subsection{盒子阴影（重点）}
+box-shadow属性可以为盒子添加阴影。
+
+语法格式为：
+\begin{css}
+    box-shadow: h-shadow v-shadow blur spread color inset;
+\end{css}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ll}
+        \hline
+        属性       & 描述                             \\
+        \hline
+        h-shadow & 必需，水平阴影的位置，允许负值                \\
+        v-shadow & 必需，垂直阴影的位置，允许负值                \\
+        blur     & 可选，模糊的清晰度                      \\
+        spread   & 可选，阴影的尺寸                       \\
+        color    & 可选，阴影的颜色，参见\nameref{CCS color} \\
+        inset    & 可选，将外部阴影（默认）改为内部阴影             \\
+        \hline
+    \end{tabular}
+\end{table}
+\begin{itemize}
+    \item 默认为外部阴影（outset），这个值不写，如果写了将导致阴影无效；
+    \item 盒子阴影不占用控件，不会印象其他盒子排列；
+\end{itemize}
+\section{文字阴影（应用不多）}
+text-shadow属性将阴影应用于文本。
+语法格式为：
+\begin{css}
+    box-shadow: h-shadow v-shadow blur color;
+\end{css}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ll}
+        \hline
+        属性       & 描述                             \\
+        \hline
+        h-shadow & 必需，水平阴影的位置，允许负值                \\
+        v-shadow & 必需，垂直阴影的位置，允许负值                \\
+        blur     & 可选，模糊的清晰度                      \\
+        color    & 可选，阴影的颜色，参见\nameref{CCS color} \\
+        \hline
+    \end{tabular}
+\end{table}
+\section{CSS浮动}
+\subsection{标准流（普通流/文档流）}
+标准流就是标签按照规定好默认的方式排序。
+\subsection{浮动}
+网页布局第一准则：\zd{多个块级元素纵向排列找标准流，多个块级元素横向排列找浮动。}
+
+float属性用于创建浮动框，将其移动到一边，直到左边缘或右边缘触及包含块或者另一个浮动框的边缘。
+
+语法格式为：
+\begin{css}
+    selector {
+    float: value;
+    }
+\end{css}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ll}
+        \hline
+        属性值   & 描述         \\
+        \hline
+        none  & 元素不浮动（默认值） \\
+        left  & 元素向左浮动     \\
+        right & 元素向右浮动     \\
+        \hline
+    \end{tabular}
+\end{table}
+\subsection{浮动特性}
+\begin{enumerate}
+    \item 浮动元素会脱离标准流（拖标），浮动的盒子不再保留原先的位置；
+    \item 浮动元素会一行内显示并且元素顶部对齐；
+    \item 浮动元素会具有行内块元素的特性
+          \begin{itemize}
+              \item 如果行内元素有了浮动，则不需要转换为行内块元素就可以直接指定高度和宽度；
+              \item 如果块级盒子没有设置宽度，默认宽度和父级宽度一样宽，但是添加浮动后，它的大小根据内容来决定；
+              \item 浮动的盒子中间是没有缝隙的，是紧挨在一起的；
+              \item 行内元素同理；
+          \end{itemize}
+\end{enumerate}
+
+为了约束浮动元素的位置，网页布局一般采取的策略是：\zd{先用标准流的父元素排列上下位置，之后内部子元素采取浮动排列左右位置，符合网页布局第一准则。}
+\section{常见网页布局}
+\section{清除浮动}
+清除浮动的本质就是清除浮动元素造成的影响。如果父盒子本身有高度，则不需要清除浮动。清除浮动之后，父级就会根据浮动的子盒子自动检测高度，父级指定高度之后，就不会影响下面的标准流了。
+
+语法格式为：
+\begin{css}
+    selector{
+    clear: value;
+    }
+\end{css}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ll}
+        \hline
+        属性值   & 描述            \\
+        \hline
+        left  & 元素向左浮动        \\
+        right & 元素向右浮动        \\
+        both  & 同时清除左右两侧浮动的影响 \\
+        \hline
+    \end{tabular}
+\end{table}
+清除浮动的策略是：闭合浮动。
+\subsection{清除浮动的方法}
+\begin{enumerate}
+    \item 额外标签法也称为隔墙法，是W3C推荐的做法；
+    \item 父级添加overflow属性；
+    \item 父级添加after伪元素；
+    \item 父级添加双伪元素；
+\end{enumerate}
+\paragraph{父级添加overflow属性} 可以给父级添加overflow属性，将其属性值设置为hidden、auto和scroll。代码简洁，但是无法显示溢出内容。
+
+\paragraph{:after伪元素法}
+
+\paragraph{添加双伪元素}
+\section{CSS属性书写顺序（重点）}
+\begin{enumerate}
+    \item 布局定位属性：display/position/float/clear/visibility/overflow；
+    \item 自身属性：width/height/margin/padding/border/background；
+    \item 文本属性：color/font/text-decoration/text-align/vertical-align/white-space/break-word；
+    \item 其他属性(CSS3): content/cursor/border-radius/box-shaow/text-shadow/background: linear-gradient；
+\end{enumerate}
+\section{页面布局整体思路}
+为了提高网页制作的效率， 布局时通常有以下的整体思路：
+\begin{enumerate}
+    \item 必须确定页面的版心（可视区）；
+    \item 分析页面中的行模块以及每个行模块中的列模块；
+    \item 一行中的列模块经常浮动布局，先确定每个列的大小，之后确定列的位置；
+    \item 制作HTML结构，遵循先有结构，后有样式的原则，结构最重要；
+\end{enumerate}
+
+\chapter{CSS定位}
+浮动可以让多个块级盒子在一行内没有缝隙排列显示，经常用于横向排列盒子。定位则是可以让盒子自由的在某个盒子内移动位置或者固定屏幕中某个位置，并且可以压住其他盒子。
+\section{定位组成}
+定位是将盒子定在某个位置，所以定位也是摆放盒子，按照定位的方式移动盒子。
+
+定位由定位模式和边偏移两部分组成：
+\begin{itemize}
+    \item 定位模式用于指定一个元素在文档中的定位方式；
+    \item 边偏移决定改元素的最终位置；
+\end{itemize}
+\subsection{定位模式}
+定位模式决定元素的定位方式，通过CSS的\verb|position|属性来设置，可取以下四个值：
+\begin{table}[H]
+    \centering
+    \caption{定位模式属性值}
+    \label{positioning mode}
+    \begin{tabular}{ll}
+        \hline
+        属性值             & 描述   \\
+        \hline
+        \verb|static|   & 静态定位 \\
+        \verb|relative| & 相对定位 \\
+        \verb|absolute| & 绝对定位 \\
+        \verb|fixed|    & 固定定位 \\
+        \hline
+    \end{tabular}
+\end{table}
+\subsubsection{静态定位static}
+静态定位是元素的默认定位方式，无定位的意思。
+
+语法格式为：
+\begin{css}
+    selector {
+    position: static;
+    }
+\end{css}
+
+静态定位按照标准流特性拜访位置，它没有边偏移，在布局中很少用到。
+
+\subsubsection{相对定位relative}
+相对定位是元素在移动位置的时候，是相对于它原来的位置来参考（自恋型）。
+
+语法格式为：
+\begin{css}
+    selector {
+    position: relative;
+    }
+\end{css}
+
+特点：
+\begin{itemize}
+    \item 位置移动参考自己原来所在的位置；
+    \item 原来在标准流中的位置继续占有，后面的盒子仍然以标准流的方式对待它（不脱标，继续保留原来位置）；
+\end{itemize}
+\subsubsection{绝对定位absolute}
+绝对定位是元素在移动位置的时候，相对于它祖先元素来说的。
+
+语法格式为：
+\begin{css}
+    selector {
+    position: absolute;
+    }
+\end{css}
+特点：
+\begin{itemize}
+    \item 如果没有祖先元素或者祖先元素没有定位，则以浏览器为准定位（Document文档）；
+    \item 如果祖先元素有定位，则以最近一级的有定位祖先元素为参考点移动位置；
+    \item 绝对定位不占有原先的位置（脱标）；
+\end{itemize}
+
+\subsubsection{子绝父相口诀}
+
+子绝父相的意思是子级是绝对定位的话，父级要用相对定位。
+
+子级绝对定位，不会占用位置，可以放到父盒子里面的任何一个地方，不会影响其他的兄弟盒子。父盒子需要加定位限制子盒子在父盒子内显示。父盒子布局时，需要占用位置，因此父盒子只能是相对定位。
+
+\subsubsection{固定定位fixed}
+固定定位是元素固定于浏览器可视区的位置，主要使用场景是可以在浏览器页面滚动时元素的位置不会改变。
+语法格式为：
+\begin{css}
+    selector {
+    position: fixed;
+    }
+\end{css}
+
+固定定位特点：
+\begin{itemize}
+    \item 以浏览器的可视窗口为参照点移动元素；
+    \item 与父元素没有任何关系；
+    \item 不随滚动条滚动；
+    \item 固定定位不再占有原先的位置；
+\end{itemize}
+
+固定定位是脱标的，其实固定定位也可以看作是一种特殊的绝对定位。
+
+如果想要在版心右侧使用固定定位，首先让固定定位的盒子\verb|left: 50%|，移动到浏览器可视区域的一般位置，再让固定定位的盒子\verb|margin-left: 50% of core|。
+
+\subsubsection{粘性定位sticky}
+粘性定位可以被认为是相对定位和固定定位的混合。
+
+粘性定位语法格式为：
+\begin{css}
+    selector {
+    position: sticky;
+    }
+\end{css}
+粘性定位的特点：
+\begin{itemize}
+    \item 以浏览器的可视窗口为参考点移动元素（固定定位特点）；
+    \item 粘性定位占有原先的位置（相对定位特点）；
+    \item 必须添加\nameref{edgeOffset}中的一个；
+\end{itemize}
+
+\subsection{边偏移\label{edgeOffset}}
+边偏移决定定位的盒子移动的最终位置，主要由top、bottom、left、right4个属性：
+\begin{table}[H]
+    \centering
+    \caption{边偏移属性}
+    \label{edgeOffsetTable}
+    \begin{tabular}{lll}
+        \hline
+        属性值    & 示例           & 描述                     \\
+        \hline
+        top    & top: 80px    & 顶端偏移量，定义元素相对于父元素上边线的距离 \\
+        bottom & bottom: 80px & 底部偏移量，定义元素相对于父元素上边线的距离 \\
+        left   & left: 80px   & 左侧偏移量，定义元素相对于父元素左边线的距离 \\
+        right  & right: 80px  & 右侧偏移量，定义元素相对于父元素右边线的距离 \\
+        \hline
+    \end{tabular}
+\end{table}
+\subsection{定位的总结}
+\begin{table}[H]
+    \centering
+    \caption{定位总结}
+    \begin{tabular}{llll}
+        \hline
+        定位模式         & 是否脱标    & 移动位置      & 是否常用  \\
+        \hline
+        静态定位static   & 否       & 不能使用边偏移   & 很少    \\
+        相对定位relative & 否（占有位置） & 相对于自身位置移动 & 常用    \\
+        绝对定位absolute & 是（不占位置） & 带有定位的父级   & 常用    \\
+        固定定位fixed    & 是（不占位置） & 浏览器可视区    & 常用    \\
+        粘性定位sticky   & 否（占有位置） & 浏览器可视区    & 当前阶段少 \\
+        \hline
+    \end{tabular}
+\end{table}
+\subsection{定位叠放次序z-index}
+在使用定位布局时，可能会出现盒子重叠的情况，此时可以使用z-index来控制盒子的前后次序（z轴）。
+
+语法格式为：
+\begin{css}
+    selector {
+    z-index: 1;
+    }
+\end{css}
+
+数值可以是正整数、负整数或者0，默认是auto，数值越大、盒子越靠上。如果属性值相同，则按照章节书写顺序，后来居上，数字后面不能加单位，并且只有有定位属性的盒子才有z-index属性。
+\subsection{定位的拓展}
+\subsubsection{绝对定位盒子的水平垂直居中方法}
+如果想要在版心右侧使用固定定位，首先让固定定位的盒子\verb|left: 50%|，移动到浏览器可视区域的一般位置，再让固定定位的盒子\verb|margin-left: -50% of width|。
+
+\subsubsection{定位特殊特性}
+\begin{itemize}
+    \item 行内元素添加绝对或固定定位，可以直接设置高度和宽度；
+    \item 块级元素添加绝对或者固定定位，如果不该宽度或者高度，默认大小是内容的大小；
+\end{itemize}
+\subsubsection{绝对定位/固定定位会完全压住盒子}
+浮动元素是不同的，尽会压住它下面标准流的盒子，但是不会压住下面标准流盒子里面的文字以及图片，但是绝对定位（固定定位）会压住下面标准流所有的内容。
+
+浮动之所以不会压住文字，是因为浮动产生的最初目的是为了左文字环绕效果的，文字会围绕浮动元素。
+
+\section{元素的显示与隐藏}
+类似网站中的广告，当点击叉号关闭后，广告消失，但是重新刷新页面，则会重新出现广告，本质就是一个元素在页面中的隐藏于显示。
+\subsection{display显示隐藏}
+display属性用于设置一个元素应如何显示。display的取值很多，但是最常用的取值为none（隐藏对象）、block（除了转换为块级元素之外，同时还有显示元素的意思）。
+
+display隐藏元素之后，不再占有原来的位置。
+\subsection{visibility显示隐藏}
+visibility元素用于指定一个元素应可见还是隐藏，常见参数为visible（元素可见）、hidden（元素隐藏）。
+
+visibility隐藏元素后，继续占有原来的位置。如果隐藏元素想要继续占有原来的位置，使用\verb|visibility: hidden|，不想继续占有原来的位置，使用\verb|display: none|。
+\subsection{overflow溢出显示隐藏}
+overflow属性规定当内容溢出元素框时发生的事情。
+\begin{table}[H]
+    \caption{overflow属性值}
+    \centering\begin{tabular}{ll}
+
+        \hline
+        值       & 描述                                         \\
+        \hline
+        visible & 默认值。内容不会被修剪，会呈现在元素框之外。                     \\
+        hidden  & 内容会被修剪，并且其余内容是不可见的。                        \\
+        scroll  & 内容会被修剪，但是浏览器会显示滚动条以便查看其余的内容。 没有溢出时，滚动条也显示。 \\
+        auto    & 如果内容被修剪，则浏览器会显示滚动条以便查看其余的内容。没有溢出时，滚动条不显示。  \\
+        inherit & 规定应该从父元素继承 overflow 属性的值。                  \\
+        \hline
+    \end{tabular}
+\end{table}
+
+如果有定位的盒子，慎用\verb|overflow: hidden|，因为它会隐藏多余的部分。
+\chapter{CSS高级技巧}
+\section{精灵图}
+一个页面中往往会应用很多小的背景图像作为装饰，当页面中的图像过多时，服务器就会频繁地接收和发送请求图片，造成服务器压力过大，这将打打降低页面的加载速度。因此，为了有效地减少服务器接收和请求的次数，提高页面的加载速度，出现了CSS精灵技术（也称CSS Sprites、CSS雪碧）。
+
+使用精灵图的核心：
+\begin{itemize}
+    \item 精灵技术主要针对于背景图片使用，就是把多个小背景图片整合到一张大图片中；
+    \item 移动背景图片位置，使用\verb|background-position|；
+    \item 移动的距离就是这个目标图片的$x$（从left向right为正）和$y$（从top向bottom为正）坐标，注意也网页中的坐标有所不同；
+    \item 使用精灵图的时候需要精确测量每个小背景图片的大小和位置；
+\end{itemize}
+
+精灵图使用的图片是多张图片组合而成的图片，将图片位置不断移动，将所在位置的图片内容显示出来。
+
+精灵图缺点：
+\begin{itemize}
+    \item 图片文件仍然比较大；
+    \item 图片本身放大或缩小还是会存在失真；
+    \item 一旦图片制作完毕想要更换非常复杂；
+\end{itemize}
+\section{字体图标}
+字体图标主要用于显示网页中通用、常用的一些小图标。虽然精灵图也可以实现该技术，但是精灵图的缺陷使得其不方便完成，字体图标的出现很好的解决了上面的问题。字体图标可以为前端工程师提供一种方便高效的图标使用方式，展示的效果是图标，但是本质上属于字体。
+
+字体图标是一些网页常见的小图标，可以直接从网上下载，因此使用中需要先下载后引入HTML页面中，对于没有的图标可以进行追加。
+
+推荐下载的网站：
+\begin{itemize}
+    \item \href{http://icomoon.io}{icomoon};
+    \item \href{http://www.iconfont.cn/}{阿里iconfont字体}；
+\end{itemize}
+\section{CSS三角}
+\begin{css}
+    .div {
+    width: 0;
+    height: 0;
+    /* Certain browser compatibility issues */
+    line-height: 0;
+    /* Certain browser compatibility issues */
+    font-size: 0;
+    border: 50px solid transparent;
+    border-right-color: red;
+    }
+\end{css}
+\section{CSS用户界面样式}
+所谓的界面样式，就是更改一些用户操作样式，以便更好提高用户的体验。
+
+\begin{itemize}
+    \item 更改用户的鼠标样式；
+    \item 表单轮廓；
+    \item 防止表单域拖拽；
+\end{itemize}
+\subsection{鼠标样式cursor}
+\begin{css}
+    li {
+    cursor: pointer;
+    }
+\end{css}
+\begin{table}[H]H
+    \caption{鼠标样式}
+    \centering\begin{tabular}{ll}
+        \hline
+        属性值                  & 描述 \\
+        \hline
+        cursor: default;     & 默认 \\
+        cursor: pointer;     & 手指 \\
+        cursor: move;        & 移动 \\
+        cursor: text;        & 文本 \\
+        cursor: not-allowed; & 禁止 \\
+        \hline
+    \end{tabular}
+
+\end{table}
+\subsection{表单轮廓与拖拽}
+\begin{css}
+    input,
+    textarea {
+            outline: none;
+        }
+    textarea {
+            resize: none;
+        }
+\end{css}
+\section{vertical-align}
+CSS中vertical-align属性经常用于设置图片或者表单（行内块元素）和文字的垂直对齐。 用于设置一个元素的垂直对齐方式，但是它只针对于行内元素或者行内块元素有效。
+
+语法格式为：
+\begin{css}
+    vertical-align: baseline|top|middle|bottom
+\end{css}
+
+\begin{table}[H]
+    \caption{vertical-align属性值}
+    \centering\begin{tabular}{ll}
+        \hline
+        属性值      & 描述                 \\
+        \hline
+        baseline & 默认，元素放置在父元素的基线上    \\
+        top      & 把元素的顶端与行中最高元素的顶端对齐 \\
+        middle   & 把此元素放置在父元素的中部      \\
+        bottom   & 把元素的顶端与行中最低的元素顶端对齐 \\
+        \hline
+    \end{tabular}
+
+\end{table}
+
+\subsection{图片底部默认的空白缝隙问题}
+图片底侧会有一个空白缝隙，这是因为行内块元素会和文字的基线（baseline）对齐。
+
+主要的解决方式：
+\begin{enumerate}
+    \item 给图片添加\verb|vertical-align: middle top bottom|等；（提倡使用）
+    \item 把图片转换为块级元素\verb|display: block|
+\end{enumerate}
+\subsection{溢出文字使用省略号显示}
+\subsubsection{单行文本溢出}
+单行文本溢出显示省略号，必须满足三个条件：
+\begin{enumerate}
+    \item 强制一行内显示文本：\verb|white-space: nowrap;|；
+    \item 超出部分隐藏：\verb|overflow: hidden|；
+    \item 文字用省略号替代超出的部分：\verb|text-overflow: ellipsis|；
+\end{enumerate}
+\subsubsection{多行文本溢出}
+\begin{css}
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+\end{css}
+更推荐让后台人员来做这个效果，因为后台人员可以设置显示多少个字，操作更简单。
+
+\section{常见布局技巧}
+\subsection{margin负值技巧}
+\begin{css}
+    ul li {
+            position: relative;
+            float: left;
+            list-style: none;
+            width: 150px;
+            height: 200px;
+            border: 1px solid red;
+            margin-left: -1px;
+            /* 先float: left;在进行margin-left */
+        }
+
+    ul li:hover {
+    z-index: 1;
+    border: 1px solid blue
+    }
+\end{css}
+\subsection{文字围绕浮动元素}
+巧妙运用浮动元素不会压住文字的特性。
+\begin{css}
+    <style>
+    * {
+            margin: 0;
+            padding: 0;
+        }
+
+    .box {
+            width: 300px;
+            height: 70px;
+            background-color: red;
+            margin: 0 auto;
+            padding: 5px;
+        }
+
+    .pic {
+            float: left;
+            width: 120px;
+            height: 70px;
+            margin-right: 10px;
+        }
+
+    .pic img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+\end{css}
+\subsection{行内块巧妙运用}
+button按钮似乎只能指定宽高，指定padding和border似乎是压缩了contents的大小。
+
+\subsection{CSS三角强化}
+\begin{css}
+    .box1 {
+    width: 0;
+    height: 0;
+    /* border-top: 100px solid transparent;
+    border-right: 50px solid skyblue;
+    border-bottom: 0 solid blue;
+    border-left: 0 solid green; */
+    border-color: transparent red transparent transparent;
+    border-style: solid;
+    border-width: 100px 50px 0 0;
+    }
+\end{css}
+\section{CSS初始化}
+不同浏览器对有些标签的默认值是不同的，为了消除不同浏览器对HTML文本呈现的差异，照顾浏览器的兼容，建议对CSS进行初始化。
+
+CSS初始化是指重设浏览器的样式（CSS reset），每个网页都必须首先进行CSS初始化。
+\chapter{H5C3提高部分}
