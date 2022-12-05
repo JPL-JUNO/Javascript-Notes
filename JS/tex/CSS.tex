@@ -689,3 +689,23 @@ CSS中vertical-align属性经常用于设置图片或者表单（行内块元素
 \end{css}
 \subsection{行内块巧妙运用}
 button按钮似乎只能指定宽高，指定padding和border似乎是压缩了contents的大小。
+
+\subsection{CSS三角强化}
+\begin{css}
+    .box1 {
+    width: 0;
+    height: 0;
+    /* border-top: 100px solid transparent;
+    border-right: 50px solid skyblue;
+    border-bottom: 0 solid blue;
+    border-left: 0 solid green; */
+    border-color: transparent red transparent transparent;
+    border-style: solid;
+    border-width: 100px 50px 0 0;
+    }
+\end{css}
+\section{CSS初始化}
+不同浏览器对有些标签的默认值是不同的，为了消除不同浏览器对HTML文本呈现的差异，照顾浏览器的兼容，建议对CSS进行初始化。
+
+CSS初始化是指重设浏览器的样式（CSS reset），每个网页都必须首先进行CSS初始化。
+\chapter{H5C3提高部分}
