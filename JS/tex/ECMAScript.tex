@@ -37,8 +37,8 @@ length
 \paragraph{字符串拼接}
 字符串+任何类型=字符串
 \begin{js}
-	var age = 19;
-	console.log('a' + (age + 1) + 'b');
+var age = 19;
+console.log('a' + (age + 1) + 'b');
 \end{js}
 
 \subsubsection{布尔型Boolean}
@@ -53,6 +53,39 @@ length
 \begin{js}
 	f1()
 \end{js}
+\section{对象}
+\subsection{创建对象的三种方法}
+\subsubsection{构造函数}
+语法格式为：
+\begin{js}
+function functionName(arguments){
+	this.attribute1 = argument1;
+	this.attribute2 = argument2;
+}
+new functionName(arguments)
+\end{js}
 
+构造函数名字的首字母按习惯需要大写，同时构造函数没有return返回值。
 
+\verb|new|关键字执行过程：
+\begin{enumerate}
+	\item new构造函数可以在内存中创建一个空的对象；
+	\item this指向刚创建的空对象；
+	\item 执行构造函数里面的代码，给这个空对象添加属性和方法；
+	\item 返回这个对象；
+\end{enumerate}
 
+\subsection{内置对象}
+JavaScript对象分为三种：自定义对象、内置对象、浏览器对象。
+
+\subsubsection{Math}
+Math 是一个内置对象，它拥有一些数学常数属性和数学函数方法。Math 不是一个函数对象。
+
+Math 用于 Number 类型。它不支持 BigInt。
+\subsubsection{Date}
+月份为1月（0）至12月（11）,\verb|getDate()|函数可以获取日期是本月第几天，\verb|getDay()|函数获取日期是本周星期几，周末记为0，周六记为6
+
+\begin{minted}{javascript}
+console.log(currentDate.getDate());
+console.log(currentDate.getDay());	
+\end{minted}
