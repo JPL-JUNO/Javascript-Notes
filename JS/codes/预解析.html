@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>预解析</title>
+    <script>
+        f1();
+        console.log(c); // 9
+        console.log(b); // 9
+        console.log(a); // error
+        function f1() {
+            var a = b = c = 9;
+            // var a = 9; b = 9; c = 9
+            // b and c are global variables
+            console.log(a); // 9
+            console.log(b); // 9
+            console.log(c); // 9
+        };
+    </script>
+</head>
+
+<body>
+    <h1>预解析</h1>
+</body>
+
+</html>
