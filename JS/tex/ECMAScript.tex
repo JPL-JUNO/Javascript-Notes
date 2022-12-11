@@ -1,17 +1,17 @@
 \chapter{ECMAscript}
 \section{变量}
 \begin{table}
-\caption{声明变量的特殊情况}
-\centering
-\begin{tabular}{lll}
-\hline
-情况&说明&结果\\
-\hline
-\verb|var age; console.log(age);|&只声明 不赋值&undefined\\
-\verb|console.log(age);|&不声明 不赋值&报错\\
-\verb|age = 10; console.log(age);|&不声明 只赋值&10\\
-\hline
-\end{tabular}
+	\caption{声明变量的特殊情况}
+	\centering
+	\begin{tabular}{lll}
+		\hline
+		情况                                 & 说明      & 结果        \\
+		\hline
+		\verb|var age; console.log(age);|  & 只声明 不赋值 & undefined \\
+		\verb|console.log(age);|           & 不声明 不赋值 & 报错        \\
+		\verb|age = 10; console.log(age);| & 不声明 只赋值 & 10        \\
+		\hline
+	\end{tabular}
 \end{table}
 \section{数据类型}
 JavaScript
@@ -37,8 +37,8 @@ length
 \paragraph{字符串拼接}
 字符串+任何类型=字符串
 \begin{js}
-var age = 19;
-console.log('a' + (age + 1) + 'b');
+	var age = 19;
+	console.log('a' + (age + 1) + 'b');
 \end{js}
 
 \subsubsection{布尔型Boolean}
@@ -46,8 +46,13 @@ console.log('a' + (age + 1) + 'b');
 \section{运算符}
 \section{流程控制}
 
+\section{作用域}
 
+\section{预解析}
 
+\begin{js}
+	f1()
+\end{js}
 
 
 
