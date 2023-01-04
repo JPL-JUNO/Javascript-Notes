@@ -1,12 +1,8 @@
 # Javascript-Notes
-Notes for studying various JS books.
 
-1. PJS4WD: 
+## Professional JavaScript for Web Developers(PJS4WD)
 
-   - 英文名：Professional JavaScript for Web Developers
-   - https://www.amazon.com/Professional-JavaScript-Developers-Matt-Frisbie/dp/1119366445
-   - 中文名：JavaScript高级程序设计
+## JavaScript高级程序设计
 
-   - https://www.ituring.com.cn/book/2472
-
-2. 
+<a href="https://www.wiley.com/en-us/Professional+JavaScript+for+Web+Developers%2C+4th+Edition-p-9781119366447"><img src="https://media.wiley.com/product_data/coverImage300/45/11193664/1119366445.jpg"></a>
+<a href="https://www.ituring.com.cn/book/2472"><img src="https://file.ituring.com.cn/LargeCover/20080d81a4fb8a268c40"></a>
