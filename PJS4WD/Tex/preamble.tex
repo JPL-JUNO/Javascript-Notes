@@ -1,4 +1,4 @@
-\usepackage{mathptmx}
+% \usepackage{mathptmx}
 \usepackage{ctex}
 \usepackage{multirow}
 \usepackage{listings}
@@ -7,6 +7,13 @@
 \usepackage{listing}
 \newcommand\zd[1]{\textcolor{red}{#1}}
 
+\usepackage{tcolorbox}
+\tcbuselibrary{minted, skins, breakable}
+\newcommand\cautions[1]{
+	\begin{tcolorbox}[breakable, colback=red!7, colframe=red!90!black,title=注意]
+		#1
+	\end{tcolorbox}
+}
 
 \usepackage{geometry}
 \geometry{
@@ -17,7 +24,6 @@
 \newminted[js]{javascript}{bgcolor=lightgray!37, linenos, breakanywhere=true}
 \newminted[css]{css}{bgcolor=red!10, linenos, breakanywhere=true}
 \newminted[html]{html}{bgcolor=orange!7, linenos, breakanywhere=true}
-\setminted[javascript]{bgcolor=lightgray!37, linenos, breakanywhere=true}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks=true,
